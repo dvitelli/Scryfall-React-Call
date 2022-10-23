@@ -1,6 +1,6 @@
-const axios = require('axios')
+import axios from 'axios'
 
-export async function getCardByName(cardName){
+export default async function getCardByName(cardName){
     
     try{
         
@@ -8,11 +8,10 @@ export async function getCardByName(cardName){
         let res = await axios.get(`https://api.scryfall.com/cards/named?exact=${encodedCardName}`)
         
         let cardData = new Object()
-        cardData.name = res.name
-        cardData.manaCost = res.mana_cost
-        cardData.color = res.colors
-        cardData.oracleText = res.oracle_text
-        console.log(cardData)
+        cardData.name = res.data.name
+        cardData.manaCost = res.data.mana_cost
+        cardData.color = res.data.colors
+        cardData.oracleText = res.data.oracle_text
            
         return cardData
         

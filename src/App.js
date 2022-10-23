@@ -1,15 +1,22 @@
-import { getCardByName } from './components/apiCall';
-import './App.css';
+import getCardByName from './components/apiCall.js'
+import React, { useEffect, useState } from 'react'
+import './App.css'
 
 function App() {
   
   const cardName = "Brainstorm"
-  const card = getCardByName(cardName)
+  
+  const [ card, setCard ] = useState(null)
+  
+  useEffect(() => {
+    getCardByName(cardName).then(setCard)
+    },[])
   
   return (
-    <div>Card:{card}
+    <div >
+      Code:{card?.name}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
